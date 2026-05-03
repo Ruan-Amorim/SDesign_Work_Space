@@ -54,6 +54,32 @@ export async function updateOrder(order) {
   );
 }
 
+export async function createOrder(order) {
+  const response = await fetch(
+    "https://api.baserow.io/api/database/rows/table/956440/?user_field_names=false",
+    {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        field_8339519: order.carro,
+        field_8339522: order.placa,
+        field_8339537: order.cliente,
+        field_8339538: order.pecas_quebradas,
+        field_8339540: order.etapas_servico,
+        field_8339553: order.status_id, // 🔥 ID DO SELECT
+        field_8339544: order.texto_servico,
+        field_8339555: order.entrega,
+        field_8339557: order.entrada,
+      }),
+    }
+  );
+
+  return await response.json();
+}
+
 export const STATUS_OPTIONS = [
   { id: 6041980, label: "Recebido" },
   { id: 6041981, label: "Desmontagem" },

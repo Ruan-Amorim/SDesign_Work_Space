@@ -86,8 +86,10 @@ export default function Dashboard() {
   };
 
   // Card
-  const Card = ({ title, value, color }) => (
+  const Card = ({ title, value, color, onClick }) => (
     <div
+
+    onClick={onClick}
       style={{
         minWidth: "25vw",
         flex: 1,
@@ -127,6 +129,7 @@ export default function Dashboard() {
           title="Atrasados"
           value={atrasados}
           color="#e74c3c"
+          onClick={() => navigate("/atrasados")}
         />
         <Card title="Em Dia" value={emDia} color="#2ecc71" />
         <Card
@@ -174,12 +177,16 @@ export default function Dashboard() {
               </div>
 
               {/* Data formatada */}
-              <div style={{ textAlign: "right", color: "whitesmoke", textTransform: "uppercase"}}>
+              <div style={{ textAlign: "right", color: "whitesmoke", textTransform: "uppercase", }}>
                 {formatEntrega(o.entrega)}
               </div>
             </div>
           ))}
         </div>
+      </div>
+      <div className="CantainerBotoesHome">
+          <div className="BotaoHome BotaoHome1" onClick={() => navigate(`/nova`)}><p>+ Novo carro</p></div>
+          <div className="BotaoHome" onClick={() => navigate(`/todos/`)}><p>Ver todos os carros</p></div>
       </div>
     </div>
   );

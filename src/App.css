@@ -16,7 +16,28 @@
     outline-offset: 2px;
   }
 }
-
+.BotaoHome {
+display: flex;
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px rgb(0,0,0, 0.3);
+  background: linear-gradient(to left, #2984c0, #3090cf);
+  color: whitesmoke;
+  text-align: center;
+  align-self: center;
+  algin-itens: center;
+}
+.BotaoHome1 {
+  margin: 25px auto 20px auto;
+}
+.BotaoHome > p {
+  display: inline-block;
+  margin: auto;
+  font-size: 1.2em;
+}
 .hero {
   position: relative;
 
