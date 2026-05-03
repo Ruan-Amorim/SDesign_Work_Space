@@ -1,14 +1,17 @@
-import { useState } from 'react'
 import './App.css'
-import Dashboard from './pages/Dashboard.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Task from "./pages/Task";
 
 function App() {
 
   return (
-    <>
-      <h1 style={{textShadow: "1px 1px 3px #000"}}><span style={{color: "red"}}>S</span>Design - Work Space</h1>
-      <Dashboard/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/task/:id" element={<Task />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
