@@ -24,7 +24,7 @@ export default function Dashboard() {
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
 
-  const hojeStr = hoje.toISOString().split("T")[0];
+  const hojeStr = hoje.toLocaleDateString("en-CA");
 
   // Em produção
   const emProducao = orders.filter(
@@ -37,14 +37,14 @@ export default function Dashboard() {
     return normalizeDate(o.entrega) < hoje;
   }).length;
 
-  // Em dia (até 3 dias)
-  const emDia = orders.filter((o) => {
+  // ⚠️ Risco de atraso (3 a 7 dias)
+  const riscoAtraso = orders.filter((o) => {
     if (!o.entrega) return false;
 
     const diff =
       (normalizeDate(o.entrega) - hoje) / (1000 * 60 * 60 * 24);
 
-    return diff >= 0 && diff <= 3;
+    return diff >= 1 && diff <= 2;
   }).length;
 
   // Entrega hoje
@@ -124,6 +124,7 @@ export default function Dashboard() {
           title="Em Produção"
           value={emProducao}
           color="#3498db"
+          onClick={() => navigate("/em_producao")}
         />
         <Card
           title="Atrasados"
@@ -131,17 +132,23 @@ export default function Dashboard() {
           color="#e74c3c"
           onClick={() => navigate("/atrasados")}
         />
-        <Card title="Em Dia" value={emDia} color="#2ecc71" />
+        <Card
+          title="Risco de Atraso"
+          value={riscoAtraso}
+          color="#f39c12"
+          onClick={() => navigate("/risco_atraso")}
+        />
         <Card
           title="Entrega Hoje"
           value={entregaHoje}
           color="#f1c40f"
+          onClick={() => navigate("/entrega_hoje")}
         />
       </div>
 
       {/* PRÓXIMAS ENTREGAS */}
       <div style={{ marginTop: 30 }}>
-        <h2>📦 Próximas Entregas</h2>
+        <h2 style={{textAlign: "auto", justifyContent: "space-around", display: "flex", margin: "15px",}}><span style={{marginRight: "auto"}}>📦 Próximas Entregas</span> <span onClick={() => navigate("/ordenado_entrega")} style={{color: "#2d91d3", textShadow: "1px 1px 3px #0000001c"}}>VER TODAS</span></h2>
 
         <div
           style={{
@@ -185,8 +192,8 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="CantainerBotoesHome">
-          <div className="BotaoHome BotaoHome1" onClick={() => navigate(`/nova`)}><p>+ Novo carro</p></div>
-          <div className="BotaoHome" onClick={() => navigate(`/todos/`)}><p>Ver todos os carros</p></div>
+          <div className="BotaoHome BotaoHome1" onClick={() => navigate(`/nova`)} style={{userSelect: "none"}}><p>+ Novo carro</p></div>
+          <div className="BotaoHome" onClick={() => navigate(`/todos/`)} style={{userSelect: "none"}}><p>Ver todos os carros</p></div>
       </div>
     </div>
   );

@@ -33,6 +33,10 @@ display: flex;
 .BotaoHome1 {
   margin: 25px auto 20px auto;
 }
+.title2 {
+  font-size: 1.5em;
+  margin: 20px 0 5px 0;
+}
 .BotaoHome > p {
   display: inline-block;
   margin: auto;
@@ -202,4 +206,7 @@ display: flex;
     right: 0;
     border-right-color: var(--border);
   }
+}
+h1,h2,h3 {
+  user-select: none;
 }
