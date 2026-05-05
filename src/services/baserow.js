@@ -9,7 +9,7 @@ export function mapOrders(data) {
     .map(item => ({
       id: item.id,
       carro: item.field_8339519,
-      cliente: item.field_8339537?.value,
+      cliente: item.field_8339537,
       placa: item.field_8339522,
       pecas_quebradas: item.field_8339538,
       etapas_servico: item.field_8339540,
@@ -69,7 +69,7 @@ export async function createOrder(order) {
         field_8339537: order.cliente,
         field_8339538: order.pecas_quebradas,
         field_8339540: order.etapas_servico,
-        field_8339553: order.status_id, // 🔥 ID DO SELECT
+        field_8339553: order.status_id, //  ID DO SELECT
         field_8339544: order.texto_servico,
         field_8339555: order.entrega,
         field_8339557: order.entrada,
