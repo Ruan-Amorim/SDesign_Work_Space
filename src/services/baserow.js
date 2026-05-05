@@ -1,11 +1,14 @@
 import axios from "axios";
 
 const API_TOKEN = "dawZ2bQ1wSy5WGKEQe1BCUYTYn6IYFty";
-const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/?user_field_names=true&filter__Status_not_equal_Concluído";
+const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/";
 
 export function mapOrders(data) {
   return data
-    .filter(item => item.field_8339519) // aqui remove vazios
+    .filter(item =>
+      item.field_8339519 && // remove vazios
+      item.field_8339553?.value !== "Concluído" // 👈 REMOVE CONCLUÍDOS
+    )
     .map(item => ({
       id: item.id,
       carro: item.field_8339519,
@@ -14,6 +17,7 @@ export function mapOrders(data) {
       pecas_quebradas: item.field_8339538,
       etapas_servico: item.field_8339540,
       status: item.field_8339553?.value,
+      status_id: item.field_8339553?.id, // 👈 IMPORTANTE (você usa no select)
       texto_servico: item.field_8339544,
       entrega: item.field_8339555,
       entrada: item.field_8339557,
