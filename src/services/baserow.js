@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_TOKEN = "dawZ2bQ1wSy5WGKEQe1BCUYTYn6IYFty";
-const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/?page=1&page_size=500";
+const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/";
 
 export function mapOrders(data) {
   return data
@@ -28,6 +28,8 @@ export async function getOrders() {
   const res = await axios.get(TABLE_URL, {
     headers: {
       Authorization: `Token ${API_TOKEN}`,
+      page: 1,
+      page_size: 500,
     },
   });
   console.log(res.data)
@@ -35,7 +37,7 @@ export async function getOrders() {
 }
 
 export async function updateOrder(order) {
-  const url = `https://api.baserow.io/api/database/rows/table/956440/${order.id}/?page=1&page_size=500`;
+  const url = `https://api.baserow.io/api/database/rows/table/956440/${order.id}/`;
 
   await axios.patch(
     url,
@@ -53,6 +55,8 @@ export async function updateOrder(order) {
     {
       headers: {
         Authorization: `Token ${API_TOKEN}`,
+        page: 1,
+        page_size: 500,
       },
     }
   );
