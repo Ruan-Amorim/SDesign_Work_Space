@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_TOKEN = "dawZ2bQ1wSy5WGKEQe1BCUYTYn6IYFty";
-const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/";
+const TABLE_URL = "https://api.baserow.io/api/database/rows/table/956440/?page=1&page_size=500";
 
 export function mapOrders(data) {
   return data
