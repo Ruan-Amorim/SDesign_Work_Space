@@ -28,9 +28,11 @@ export async function getOrders() {
   const res = await axios.get(TABLE_URL, {
     headers: {
       Authorization: `Token ${API_TOKEN}`,
+    },
+    params: {
       page: 1,
       page_size: 500,
-    },
+    }
   });
   console.log(res.data)
   return mapOrders(res.data.results);
@@ -55,9 +57,11 @@ export async function updateOrder(order) {
     {
       headers: {
         Authorization: `Token ${API_TOKEN}`,
+      },
+      params {
         page: 1,
         page_size: 500,
-      },
+      }
     }
   );
 }
