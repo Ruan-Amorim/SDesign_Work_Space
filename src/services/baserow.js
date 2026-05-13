@@ -58,7 +58,7 @@ export async function updateOrder(order) {
       headers: {
         Authorization: `Token ${API_TOKEN}`,
       },
-      params {
+      params: {
         page: 1,
         page_size: 500,
       }
