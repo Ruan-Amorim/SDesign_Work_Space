@@ -35,7 +35,7 @@ export async function getOrders() {
 }
 
 export async function updateOrder(order) {
-  const url = `https://api.baserow.io/api/database/rows/table/956440/${order.id}/`;
+  const url = `https://api.baserow.io/api/database/rows/table/956440/${order.id}/?page=1&page_size=500`;
 
   await axios.patch(
     url,
