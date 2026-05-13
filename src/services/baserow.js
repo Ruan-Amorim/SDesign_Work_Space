@@ -30,7 +30,6 @@ export async function getOrders() {
       Authorization: `Token ${API_TOKEN}`,
     },
     params: {
-      user_field_names: true,
       page: 1,
       page_size: 500,
     }
@@ -60,7 +59,6 @@ export async function updateOrder(order) {
         Authorization: `Token ${API_TOKEN}`,
       },
       params: {
-        user_field_names: true,
         page: 1,
         page_size: 500,
       }
